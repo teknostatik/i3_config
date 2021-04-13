@@ -225,3 +225,4 @@ bindsym $mod+BackSpace mode "$mode_system"
 # My first attempt at randomising wallpaper
 
 exec --no-startup-id feh --randomize --bg-scale /home/andy/Dropbox/Wallpaper/current/*
+bindsym $mod+z exec --no-startup-id randomise_wallpaper
