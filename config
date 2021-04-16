@@ -41,7 +41,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -191,7 +192,6 @@ bar {
         status_command i3status
         tray_output primary
 }
-
 # Lock the screen
 
 set $i3lockwall i3lock -i /home/andy/Dropbox/lock.png -t
@@ -200,7 +200,7 @@ bindsym mod4+l exec --no-startup-id $i3lockwall
 # Start Dropbox
 exec --no-startup-id dropbox start
 
-# make things pretty
+# make things pretty 
 exec --no-startup-id gnome-settings-daemon
 
 # shutdown / restart / suspend
@@ -224,5 +224,7 @@ bindsym $mod+BackSpace mode "$mode_system"
 
 # My first attempt at randomising wallpaper
 
-exec --no-startup-id feh --randomize --bg-scale /home/andy/Dropbox/Wallpaper/current/*
+exec --no-startup-id feh --randomize --bg-scale /home/andy/Dropbox/Wallpaper/current/* 
 bindsym $mod+z exec --no-startup-id randomise_wallpaper
+
+
