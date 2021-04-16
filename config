@@ -188,10 +188,11 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-        tray_output primary
-}
+# bar {
+#         status_command i3status
+#         tray_output primary
+# }
+
 # Lock the screen
 
 set $i3lockwall i3lock -i /home/andy/Dropbox/lock.png -t
@@ -205,7 +206,7 @@ exec --no-startup-id gnome-settings-daemon
 
 # shutdown / restart / suspend
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
+set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (h) Hibernate, (r) Reboot, (CTRL+s) Shutdown
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $i3lockwall, mode "default"
@@ -227,4 +228,30 @@ bindsym $mod+BackSpace mode "$mode_system"
 exec --no-startup-id feh --randomize --bg-scale /home/andy/Dropbox/Wallpaper/current/* 
 bindsym $mod+z exec --no-startup-id randomise_wallpaper
 
+# Dracula theme
 
+# Commmenting colours out for now 
+
+# class                 border  bground text    indicator child_border
+# client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+# client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+# client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+# client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+# client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
+
+bar {
+  colors {
+    background #282A36
+    statusline #F8F8F2
+    separator  #44475A
+
+    focused_workspace  #44475A #44475A #F8F8F2
+    active_workspace   #282A36 #44475A #F8F8F2
+    inactive_workspace #282A36 #282A36 #BFBFBF
+    urgent_workspace   #FF5555 #FF5555 #F8F8F2
+    binding_mode       #FF5555 #FF5555 #F8F8F2
+  }
+    status_command i3status
+}
