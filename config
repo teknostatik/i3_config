@@ -201,10 +201,10 @@ bindsym mod4+l exec --no-startup-id $i3lockwall
 # Start Dropbox
 exec --no-startup-id dropbox start
 
-# make things pretty 
+# Start Settings daemon 
 exec --no-startup-id gnome-settings-daemon
 
-# shutdown / restart / suspend
+# Allow reboot, shutdown, suspend etc. from keybindings
 
 set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (h) Hibernate, (r) Reboot, (CTRL+s) Shutdown
 
@@ -223,7 +223,8 @@ mode "$mode_system" {
 
 bindsym $mod+BackSpace mode "$mode_system"
 
-# My first attempt at randomising wallpaper
+# Set wallpaper and change it with a keybinding
+# This looks ay my Dropbox account. Probably want to point at somewhere like /usr/share/wallpaper
 
 exec --no-startup-id feh --randomize --bg-scale /home/andy/Dropbox/Wallpaper/current/* 
 bindsym $mod+z exec --no-startup-id randomise_wallpaper
