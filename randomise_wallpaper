@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --randomize --bg-scale /home/andy/Dropbox/Wallpaper/current/*
+feh --randomize --bg-scale /usr/share/wallaper/*

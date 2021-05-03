@@ -227,7 +227,7 @@ bindsym $mod+BackSpace mode "$mode_system"
 # This looks at my Dropbox account 
 # Probably want to point at somewhere like /usr/share/wallpaper
 
-exec --no-startup-id feh --randomize --bg-scale /home/andy/Dropbox/Wallpaper/current/* 
+exec --no-startup-id feh --randomize --bg-scale /usr/share/wallpaper/* 
 bindsym $mod+z exec --no-startup-id randomise_wallpaper
 
 # Dracula theme
