@@ -1,2 +1,6 @@
 #!/bin/sh
+
+# All this does is change the wallpaper to something else from the pool
+# I use this far more than I should
+
 feh --randomize --bg-scale /usr/share/wallaper/*
