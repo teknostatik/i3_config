@@ -11,3 +11,10 @@ This is my current i3 configuration file. The parts I've changed are mostly the 
 There are not a lot of visual changes in my configuration; it's just things to make day to day usage easier and to assign actions to keyboard shortcuts that I have in muscle memory anyway.
 
 I am in the process of building an Ubuntu installer that adds i3 with these customisation on top of Ubuntu Server. I'll add more notes on this if it becomes a thing that I think other people could benefit from.  
+
+## Dependencies
+
+Additional software you will need to make this configuration work:
+
+* [Kitty](https://sw.kovidgoyal.net/kitty/)
+* [i3blocks](https://vivien.github.io/i3blocks/)
