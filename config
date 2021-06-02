@@ -87,7 +87,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # move whole workspace
-bindsym $mod+Control+l move workspace to output left 
+bindsym $mod+Control+l move workspace to output left
 bindsym $mod+Control+r move workspace to output right
 
 # split in horizontal orientation
@@ -215,6 +215,9 @@ bindsym mod4+l exec --no-startup-id $i3lockwall
 
 # Start Dropbox
 exec --no-startup-id dropbox start
+
+# Start barrier
+exec --no-startup-id barrier
 
 # Start ulauncher
 exec --no-startup-id ulauncher

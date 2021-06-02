@@ -17,5 +17,4 @@ Additional software you will need to make this configuration work:
 
 * [Kitty](https://sw.kovidgoyal.net/kitty/)
 * [i3blocks](https://vivien.github.io/i3blocks/)
-
-  
+* [Barrier](https://github.com/debauchee/barrier)
