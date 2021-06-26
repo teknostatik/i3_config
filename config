@@ -208,9 +208,8 @@ bindsym $mod+r mode "resize"
 # }
 
 # Lock the screen
-# What I'm doing here is pointing to a file in my Dropbox. I really need to fix this at some point.
 
-set $i3lockwall i3lock -i /home/andy/Dropbox/lock.png -t
+set $i3lockwall sh ~/.config/i3/scripts/lock.sh
 bindsym mod4+l exec --no-startup-id $i3lockwall
 
 # Start Dropbox
