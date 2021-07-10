@@ -209,7 +209,7 @@ bindsym $mod+r mode "resize"
 
 # Lock the screen
 
-set $i3lockwall sh ~/.config/i3/scripts/lock.sh
+set $i3lockwall sh /usr/local/bin/lock.sh
 bindsym mod4+l exec --no-startup-id $i3lockwall
 
 # Start Dropbox
