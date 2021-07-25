@@ -7,15 +7,6 @@ echo "----------------------------------------"
 echo "i3 Installation Script - v0.1, July 2021"
 echo "----------------------------------------"
 
-# Standard error mitigation
-
-set -euo pipefail
-
-# Update software
-
-sudo apt update
-sudo apt -y upgrade
-
 # Install the i3 window manager and some basic utilities
 
 sudo apt install -y i3 i3blocks feh arandr scrot xautolock barrier kitty
@@ -34,9 +25,9 @@ sudo mv lock.sh /usr/local/bin/
 # These are downloaded from various places. Will try and find credits at some point.
 
 sudo mkdir /usr/share/wallpaper
-# Copy any existing wallpapers into this new directory (delate any you don't like later)
+# Copy any existing wallpapers into this new directory (delete any you don't like later)
 sudo cp -R /usr/share/backgrounds/* /usr/share/wallpaper
-# But there are also some different backgrounds I liketo use
+# But there are also some different backgrounds I like to use
 cd /usr/share/wallpaper
 sudo wget https://www.dropbox.com/s/0yg8txbgw0ifqmg/9dy0gvxq7fl61.png
 sudo wget https://www.dropbox.com/s/cljxhezhxuu3nce/background.png
