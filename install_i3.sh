@@ -2,6 +2,7 @@
 
 # Script to install i3 WM on any Debian based distro
 # Tested on Debian, Ubuntu and Raspberry Pi OS
+# Only installs what's needed for i3, so should be called from other scripts
 
 echo "----------------------------------------"
 echo "i3 Installation Script - v0.1, July 2021"
