@@ -9,7 +9,7 @@ echo "----------------------------------------"
 echo "i3 Installation Script - v0.1, July 2021"
 echo "----------------------------------------"
 
-# Install the i3 window manager and some basic utilities
+# Install the i3 window manager and some basic utilities (all of these are referenced in my i3 config file, so need to be installed)
 
 sudo apt install -y i3 i3blocks feh arandr scrot xautolock barrier kitty
 sudo add-apt-repository ppa:agornostal/ulauncher -y
