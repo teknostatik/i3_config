@@ -19,3 +19,4 @@ Additional software you will need to make this configuration work:
 * [i3blocks](https://vivien.github.io/i3blocks/)
 * [Barrier](https://github.com/debauchee/barrier)
 * [scrot](https://github.com/dreamer/scrot)
+* Imagemagick
