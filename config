@@ -117,6 +117,7 @@ for_window [window_role="task_dialog"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="XTerm"] floating enable
 for_window [class="pavucontrol"] floating enable
+for_window [title="Microsoft Teams Notification"] floating enable
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
