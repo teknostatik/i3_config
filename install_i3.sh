@@ -32,12 +32,12 @@ sudo mkdir /usr/share/wallpaper
 sudo cp -R /usr/share/backgrounds/* /usr/share/wallpaper
 # But there are also some different backgrounds I like to use
 cd /usr/share/wallpaper
-sudo wget https://www.dropbox.com/s/0yg8txbgw0ifqmg/9dy0gvxq7fl61.png
-sudo wget https://www.dropbox.com/s/cljxhezhxuu3nce/background.png
+sudo wget https://www.dropbox.com/s/65qlzytfq8c2thu/1920x1080.jpg
+sudo wget https://www.dropbox.com/s/xtb4ybjwywzj5f3/3840x2160.png
 sudo wget https://www.dropbox.com/s/f2rkmbv13c8t769/1920x1080-dark-linux.png
-sudo wget https://www.dropbox.com/s/1i7g8u5h6whd5dv/3430638.png
-sudo wget https://www.dropbox.com/s/bkae9ethe3jqbod/jyrji9bnp3171.jpg
-sudo wget https://www.dropbox.com/s/idk05cia43lj5qb/rocket.png?dl=0
+sudo wget https://www.dropbox.com/s/tc8ejnibiat49t6/5120x2880.png
+sudo wget https://www.dropbox.com/s/uuh3exp1shb0h5o/IMG_8585-photivo-1-edit-crop-2160p.jpg
+sudo wget https://www.dropbox.com/s/idk05cia43lj5qb/rocket.png
 # In my i3 config file we switch wallpaper using MOD + Z, but this requires a script
 cd $HOME
 wget https://raw.githubusercontent.com/teknostatik/i3_config/main/randomise_wallpaper
