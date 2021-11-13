@@ -1,15 +1,4 @@
-;==========================================================
-;
-; THIS IS AN EXAMPLE CONFIGURATION FILE!
-; IT IS NOT SUPPOSED TO WORK OUT OF THE BOX SINCE IS CONTAINS
-; SETTINGS THAT ARE SPECIFIC TO THE MACHINE WHICH WAS USED
-; TO GENERATE IT.
-; Please refer to the web documentation hosted at:
-; https://github.com/polybar/polybar#configuration
-; and
-; https://github.com/polybar/polybar/wiki/Configuration
-; if you want to automatically generate one for you.
-;
+
 ;==========================================================
 ;
 ;
@@ -47,7 +36,6 @@ height = 20
 ;offset-y = 0%
 radius = 6.0
 fixed-center = false
-
 
 background = ${colors.background}
 foreground = ${colors.foreground}
