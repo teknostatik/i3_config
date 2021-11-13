@@ -5,9 +5,9 @@
 # Only installs what's needed for i3, so should be called from other scripts
 # It assumes you are logged in as the user who will be using i3
 
-echo "----------------------------------------"
-echo "i3 Installation Script - v0.1, July 2021"
-echo "----------------------------------------"
+echo "-------------------------------------------"
+echo "i3 Installation Script - v1.0, October 2021"
+echo "-------------------------------------------"
 
 # Install the i3 window manager and some basic utilities (all of these are referenced in my i3 config file, so need to be installed)
 
