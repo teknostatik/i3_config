@@ -251,7 +251,7 @@ exec --no-startup-id dropbox start
 exec --no-startup-id barrier
 
 # Start ulauncher
-exec --no-startup-id ulauncher
+# exec --no-startup-id ulauncher
 
 # Start Settings daemon
 exec --no-startup-id gnome-settings-daemon
