@@ -256,6 +256,10 @@ exec --no-startup-id barrier
 # Start Settings daemon
 exec --no-startup-id gnome-settings-daemon
 
+# Start blueman
+
+exec --no-startup-id blueman-applet
+
 # Take a screenshot of an area of the screen
 bindsym Print --release exec scrot -s
 
