@@ -263,6 +263,10 @@ exec --no-startup-id blueman-applet
 # Take a screenshot of an area of the screen
 bindsym Print --release exec scrot -s
 
+# Start the Caffeine indicator
+
+exec --no-startup-id caffeine-indicator
+
 # Allow reboot, shutdown, suspend etc. from keybindings
 
 set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (h) Hibernate, (r) Reboot, (CTRL+s) Shutdown
