@@ -267,6 +267,10 @@ bindsym Print --release exec scrot -s
 
 exec --no-startup-id caffeine-indicator
 
+# Start CopyQ
+
+exec --no-startup-id copyq
+
 # Allow reboot, shutdown, suspend etc. from keybindings
 
 set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (h) Hibernate, (r) Reboot, (CTRL+s) Shutdown
