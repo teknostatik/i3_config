@@ -59,7 +59,7 @@ font-2 = siji:pixelsize=10;1
 bottom = true
 
 modules-left = i3
-modules-right = pulseaudio date
+modules-right = battery memory cpu eth pulseaudio date
 # modules-center = mpd
 # modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
@@ -140,7 +140,7 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
