@@ -271,6 +271,10 @@ exec --no-startup-id caffeine-indicator
 
 exec --no-startup-id copyq
 
+# Stert picom
+
+exec --no-startup-id picom -b
+
 # Allow reboot, shutdown, suspend etc. from keybindings
 
 set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (h) Hibernate, (r) Reboot, (CTRL+s) Shutdown
@@ -310,22 +314,28 @@ client.background       #F8F8F2
 
 # Old bar using i3blocks
 
-bar {
- colors {
-   background #282A36
-      statusline #F8F8F2
-    separator  #44475A
+#bar {
+ #colors {
+ #  background #282A36
+ #     statusline #F8F8F2
+ #   separator  #44475A
 
-   focused_workspace  #44475A #44475A #F8F8F2
-    active_workspace   #282A36 #44475A #F8F8F2
-    inactive_workspace #282A36 #282A36 #BFBFBF
-    urgent_workspace   #FF5555 #FF5555 #F8F8F2
-    binding_mode       #FF5555 #FF5555 #F8F8F2
-  }
-   status_command i3blocks
-    tray_output primary
-}
+#   focused_workspace  #44475A #44475A #F8F8F2
+ #   active_workspace   #282A36 #44475A #F8F8F2
+#    inactive_workspace #282A36 #282A36 #BFBFBF
+ #   urgent_workspace   #FF5555 #FF5555 #F8F8F2
+ #   binding_mode       #FF5555 #FF5555 #F8F8F2
+ # }
+ #  status_command i3blocks
+ #   tray_output primary
+#}
 
 # New bar using Polybar
 
-# exec --no-startup-id polybar example
+exec --no-startup-id polybar example
+
+# Gaps
+
+gaps inner 8px
+gaps outer 4px
+default_border none
