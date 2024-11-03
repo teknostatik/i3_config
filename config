@@ -275,6 +275,10 @@ exec --no-startup-id copyq
 
 exec --no-startup-id picom -b
 
+# Start lxpolkit
+
+exec --no-startup-id lxpolkit
+
 # Allow reboot, shutdown, suspend etc. from keybindings
 
 set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (h) Hibernate, (r) Reboot, (CTRL+s) Shutdown
