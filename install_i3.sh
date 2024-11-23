@@ -11,7 +11,20 @@ echo "----------------------"
 
 # Install the i3 window manager and some basic utilities (all of these are referenced in my i3 config file, so need to be installed)
 
-sudo apt install -y i3 i3blocks feh arandr scrot xautolock barrier kitty imagemagick polybar caffeine picom
+sudo apt install -y \
+    i3 \
+    i3blocks \
+    feh \
+    arandr \
+    scrot \
+    xautolock \
+    barrier \ 
+    kitty \
+    imagemagick \
+    polybar \
+    caffeine \
+    picom \ 
+    lxappearance
 
 # Set up i3. Comment this out if you want to use your own config file or build your config from scratch.
 
