@@ -1,0 +1,191 @@
+set $mod Mod1
+set $left j
+set $down k
+set $up l
+set $right semicolon
+set $term kitty
+set $menu wofi --show drun
+set $lock_cmd /usr/local/bin/sway-lock-blur
+set $wallpaper_cmd /usr/local/bin/randomise_wallpaper_wayland
+
+font pango:monospace 8
+
+floating_modifier $mod normal
+default_border pixel 2
+
+output * bg #282a36 solid_color
+
+exec_always --no-startup-id dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+exec_always --no-startup-id /usr/local/bin/waybar-launch
+exec --no-startup-id $wallpaper_cmd
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id copyq
+exec --no-startup-id caffeine-indicator
+exec --no-startup-id dropbox start -i
+exec --no-startup-id mako
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec swayidle -w \
+    timeout 900 '$lock_cmd' \
+    timeout 1200 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep '$lock_cmd'
+
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+Control+l move workspace to output left
+bindsym $mod+Control+r move workspace to output right
+
+bindsym $mod+h splith
+bindsym $mod+v splitv
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="wdisplays"] floating enable
+for_window [class="Gimp"] floating enable
+for_window [class="zoom"] floating enable
+for_window [title="Microsoft Teams Notification"] floating enable
+for_window [title="About Mozilla Firefox"] floating enable
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+bindsym $mod+Mod4+1 workspace number $ws11
+bindsym $mod+Mod4+2 workspace number $ws12
+bindsym $mod+Mod4+3 workspace number $ws13
+bindsym $mod+Mod4+4 workspace number $ws14
+bindsym $mod+Mod4+5 workspace number $ws15
+bindsym $mod+Mod4+6 workspace number $ws16
+bindsym $mod+Mod4+7 workspace number $ws17
+bindsym $mod+Mod4+8 workspace number $ws18
+bindsym $mod+Mod4+9 workspace number $ws19
+bindsym $mod+Mod4+0 workspace number $ws20
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Mod4+Shift+1 move container to workspace number $ws11
+bindsym $mod+Mod4+Shift+2 move container to workspace number $ws12
+bindsym $mod+Mod4+Shift+3 move container to workspace number $ws13
+bindsym $mod+Mod4+Shift+4 move container to workspace number $ws14
+bindsym $mod+Mod4+Shift+5 move container to workspace number $ws15
+bindsym $mod+Mod4+Shift+6 move container to workspace number $ws16
+bindsym $mod+Mod4+Shift+7 move container to workspace number $ws17
+bindsym $mod+Mod4+Shift+8 move container to workspace number $ws18
+bindsym $mod+Mod4+Shift+9 move container to workspace number $ws19
+bindsym $mod+Mod4+Shift+0 move container to workspace number $ws20
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Sway?' -b 'Yes, exit Sway' 'swaymsg exit'
+
+mode "resize" {
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bindsym Mod4+l exec $lock_cmd
+bindsym Print exec /usr/local/bin/sway-screenshot-region
+bindsym $mod+z exec $wallpaper_cmd
+
+set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (h) Hibernate, (r) Reboot, (CTRL+s) Shutdown
+mode "$mode_system" {
+    bindsym l exec $lock_cmd, mode "default"
+    bindsym e exec swaymsg exit, mode "default"
+    bindsym s exec $lock_cmd && systemctl suspend, mode "default"
+    bindsym h exec $lock_cmd && systemctl hibernate, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym Ctrl+s exec systemctl poweroff -i, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+BackSpace mode "$mode_system"
+
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4 #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36 #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555 #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36 #282A36
+client.background       #F8F8F2

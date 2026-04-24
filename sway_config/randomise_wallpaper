@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -euo pipefail
+
+wallpaper_dir="/usr/share/wallpaper"
+wallpaper="$(find "$wallpaper_dir" -type f | shuf -n 1)"
+
+if [ -z "$wallpaper" ]; then
+    echo "No wallpapers found in $wallpaper_dir" >&2
+    exit 1
+fi
+
+pkill -x swaybg >/dev/null 2>&1 || true
+nohup swaybg -i "$wallpaper" -m fill >/dev/null 2>&1 &
