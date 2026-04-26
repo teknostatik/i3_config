@@ -33,3 +33,4 @@ Then log out and select the Sway session from your display manager.
 
 - Many X11 applications will still work through Xwayland.
 - Clipboard managers and tray applications vary a bit under Wayland, so if one of the X11 holdovers behaves badly on your machine, that is the first place to swap in a Wayland-native alternative.
+- For graphical applications that need elevated privileges, use `Mod+Shift+P` to open a `wofi` prompt and run the command through `pkexec` (with a `sudo -A` fallback).

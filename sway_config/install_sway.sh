@@ -51,6 +51,7 @@ sudo install -m 755 "$SCRIPT_DIR/lock.sh" /usr/local/bin/sway-lock-blur
 sudo install -m 755 "$SCRIPT_DIR/randomise_wallpaper" /usr/local/bin/randomise_wallpaper_wayland
 sudo install -m 755 "$SCRIPT_DIR/waybar_launch.sh" /usr/local/bin/waybar-launch
 sudo install -m 755 "$SCRIPT_DIR/screenshot_region.sh" /usr/local/bin/sway-screenshot-region
+sudo install -m 755 "$SCRIPT_DIR/sway_root_launch.sh" /usr/local/bin/sway-root-launch
 
 sudo mkdir -p /usr/share/wallpaper
 sudo cp -Rn /usr/share/backgrounds/. /usr/share/wallpaper/

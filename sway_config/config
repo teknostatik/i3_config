@@ -168,6 +168,7 @@ bindsym $mod+r mode "resize"
 bindsym Mod4+l exec $lock_cmd
 bindsym Print exec /usr/local/bin/sway-screenshot-region
 bindsym $mod+z exec $wallpaper_cmd
+bindsym $mod+Shift+p exec /usr/local/bin/sway-root-launch
 
 set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (h) Hibernate, (r) Reboot, (CTRL+s) Shutdown
 mode "$mode_system" {
