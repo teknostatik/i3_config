@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -euo pipefail
+
+wallpaper_dir="/usr/share/wallpaper"
+wallpaper="$(find "$wallpaper_dir" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.webp" \) | shuf -n 1)"
+
+if [ -z "$wallpaper" ]; then
+    echo "No wallpapers found in $wallpaper_dir" >&2
+    exit 1
+fi
+
+hyprctl hyprpaper preload "$wallpaper"
+hyprctl hyprpaper wallpaper ",$wallpaper"
