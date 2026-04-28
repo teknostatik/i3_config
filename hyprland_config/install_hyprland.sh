@@ -4,6 +4,12 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="$(mktemp -d /tmp/hyprland-build.XXXXXX)"
+INSTALL_PREFIX="/usr/local"
+
+export PATH="$INSTALL_PREFIX/bin:$PATH"
+export PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig:$INSTALL_PREFIX/share/pkgconfig:${PKG_CONFIG_PATH:-}"
+export CMAKE_PREFIX_PATH="$INSTALL_PREFIX:${CMAKE_PREFIX_PATH:-}"
+export LD_LIBRARY_PATH="$INSTALL_PREFIX/lib:${LD_LIBRARY_PATH:-}"
 
 echo "-----------------------------"
 echo "Hyprland Installation Script"
@@ -65,6 +71,7 @@ sudo apt install -y \
     libxcb-icccm4-dev \
     libxcb-ewmh-dev \
     libxcb-res0-dev \
+    libxcb-errors-dev \
     libxcb-xinput-dev \
     libxcb1-dev \
     libx11-xcb-dev \
@@ -72,6 +79,7 @@ sudo apt install -y \
     libxcb-keysyms1-dev \
     libxcb-randr0-dev \
     libx11-dev \
+    libxcursor-dev \
     libxcb-xkb-dev \
     xwayland \
     libgbm-dev \
@@ -79,6 +87,7 @@ sudo apt install -y \
     libvulkan-dev \
     libvulkan-volk-dev \
     libvkfft-dev \
+    glslang-dev \
     glslang-tools \
     libglvnd-dev \
     libegl-dev \
@@ -86,15 +95,31 @@ sudo apt install -y \
     libpango1.0-dev \
     libcairo2-dev \
     libgdk-pixbuf-2.0-dev \
+    libjpeg-dev \
+    libwebp-dev \
     librsvg2-dev \
     libsystemd-dev \
+    libsdbus-c++-dev \
     libpam0g-dev \
     libmagic-dev \
+    liblcms2-dev \
+    libmuparser-dev \
+    libzip-dev \
+    libre2-dev \
     libtomlplusplus-dev \
+    liblua5.5-dev \
+    uuid-dev \
     libudis86-dev \
+    libaquamarine-dev \
+    libhyprcursor-dev \
+    libhyprgraphics-dev \
     libhyprlang-dev \
+    libhyprtoolkit-dev \
     libhyprutils-dev \
+    libhyprwire-dev \
+    hyprland-protocols \
     hyprwayland-scanner \
+    hyprwire-scanner \
     wayland-protocols \
     wayland-scanner++ \
     libcurl4-openssl-dev \
@@ -112,9 +137,10 @@ build_cmake() {
     git clone --depth=1 --recurse-submodules "https://github.com/hyprwm/$repo.git" "$BUILD_DIR/$name"
     cmake -S "$BUILD_DIR/$name" -B "$BUILD_DIR/$name/build" \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=/usr
+        -DCMAKE_INSTALL_PREFIX="$INSTALL_PREFIX"
     cmake --build "$BUILD_DIR/$name/build" --parallel "$(nproc)"
     sudo cmake --install "$BUILD_DIR/$name/build"
+    sudo ldconfig
 }
 
 build_meson() {
@@ -124,17 +150,28 @@ build_meson() {
     echo ">>> Building $name from source..."
     git clone --depth=1 --recurse-submodules "https://github.com/hyprwm/$repo.git" "$BUILD_DIR/$name"
     meson setup "$BUILD_DIR/$name/build" "$BUILD_DIR/$name" \
-        --prefix=/usr \
+        --prefix="$INSTALL_PREFIX" \
         --buildtype=release
     ninja -C "$BUILD_DIR/$name/build"
     sudo ninja -C "$BUILD_DIR/$name/build" install
+    sudo ldconfig
 }
 
-# Build order matters: Hyprland must come first, then the utilities.
-build_cmake Hyprland   hyprland
-build_cmake hyprpaper  hyprpaper
-build_cmake hypridle   hypridle
-build_cmake hyprlock   hyprlock
+# Build the fast-moving Hypr libraries from source first so Hyprland doesn't
+# depend on slightly older distro package versions.
+build_cmake hyprutils   hyprutils
+build_cmake hyprlang    hyprlang
+build_cmake hyprcursor  hyprcursor
+build_cmake hyprgraphics hyprgraphics
+build_cmake aquamarine  aquamarine
+build_cmake hyprwire    hyprwire
+build_cmake hyprtoolkit hyprtoolkit
+
+# Build order matters for the applications too.
+build_cmake Hyprland    hyprland
+build_cmake hyprpaper   hyprpaper
+build_cmake hypridle    hypridle
+build_cmake hyprlock    hyprlock
 
 # Update the dynamic linker cache in case libraries were installed
 sudo ldconfig
