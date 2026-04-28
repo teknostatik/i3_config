@@ -84,6 +84,7 @@ sudo apt install -y \
     xwayland \
     libgbm-dev \
     libdrm-dev \
+    libdisplay-info-dev \
     libvulkan-dev \
     libvulkan-volk-dev \
     libvkfft-dev \
@@ -102,6 +103,7 @@ sudo apt install -y \
     libsdbus-c++-dev \
     libpam0g-dev \
     libmagic-dev \
+    libpugixml-dev \
     liblcms2-dev \
     libmuparser-dev \
     libzip-dev \
