@@ -4,12 +4,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="$(mktemp -d /tmp/hyprland-build.XXXXXX)"
-INSTALL_PREFIX="/usr/local"
-
-export PATH="$INSTALL_PREFIX/bin:$PATH"
-export PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig:$INSTALL_PREFIX/share/pkgconfig:${PKG_CONFIG_PATH:-}"
-export CMAKE_PREFIX_PATH="$INSTALL_PREFIX:${CMAKE_PREFIX_PATH:-}"
-export LD_LIBRARY_PATH="$INSTALL_PREFIX/lib:${LD_LIBRARY_PATH:-}"
+INSTALL_PREFIX="/usr"
 
 echo "-----------------------------"
 echo "Hyprland Installation Script"
@@ -104,6 +99,7 @@ sudo apt install -y \
     libpam0g-dev \
     libmagic-dev \
     libpugixml-dev \
+    libiniparser-dev \
     liblcms2-dev \
     libmuparser-dev \
     libzip-dev \
