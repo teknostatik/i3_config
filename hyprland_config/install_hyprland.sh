@@ -187,6 +187,10 @@ cp "$SCRIPT_DIR/hyprlock.conf" "$HOME/.config/hypr/hyprlock.conf"
 
 # Set up Waybar
 mkdir -p "$HOME/.config/waybar"
+cp "$SCRIPT_DIR/waybar_config.jsonc" "$HOME/.config/waybar/config-hyprland.jsonc"
+cp "$SCRIPT_DIR/waybar_style.css" "$HOME/.config/waybar/style-hyprland.css"
+
+# Backward-compatible defaults for setups still launching plain `waybar`.
 cp "$SCRIPT_DIR/waybar_config.jsonc" "$HOME/.config/waybar/config.jsonc"
 cp "$SCRIPT_DIR/waybar_style.css" "$HOME/.config/waybar/style.css"
 

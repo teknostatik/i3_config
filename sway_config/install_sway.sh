@@ -38,6 +38,10 @@ mkdir -p "$HOME/.config/sway"
 cp "$SCRIPT_DIR/config" "$HOME/.config/sway/config"
 
 mkdir -p "$HOME/.config/waybar"
+cp "$SCRIPT_DIR/waybar_config.jsonc" "$HOME/.config/waybar/config-sway.jsonc"
+cp "$SCRIPT_DIR/waybar_style.css" "$HOME/.config/waybar/style-sway.css"
+
+# Backward-compatible defaults for setups still launching plain `waybar`.
 cp "$SCRIPT_DIR/waybar_config.jsonc" "$HOME/.config/waybar/config.jsonc"
 cp "$SCRIPT_DIR/waybar_style.css" "$HOME/.config/waybar/style.css"
 
