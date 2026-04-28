@@ -94,7 +94,7 @@ sudo apt install -y \
     libudis86-dev \
     libhyprlang-dev \
     libhyprutils-dev \
-    libhyprwayland-scanner-dev \
+    hyprwayland-scanner \
     wayland-protocols \
     wayland-scanner++ \
     libcurl4-openssl-dev \
