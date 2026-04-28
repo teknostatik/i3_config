@@ -3,29 +3,22 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BUILD_DIR="$(mktemp -d /tmp/hyprland-build.XXXXXX)"
 
 echo "-----------------------------"
 echo "Hyprland Installation Script"
 echo "-----------------------------"
 echo ""
 echo "NOTE: Hyprland requires Ubuntu 24.04 (Noble) or later."
-echo "      Some packages (hyprlock, hypridle, hyprpaper) may need the"
-echo "      official Hyprland PPA: https://github.com/hyprwm/Hyprland"
+echo "      This script builds Hyprland, hyprlock, hypridle, and hyprpaper"
+echo "      from source using the official hyprwm repositories."
 echo ""
 
-# Add Hyprland PPA if not already present
-if ! grep -r "hyprwm" /etc/apt/sources.list.d/ >/dev/null 2>&1; then
-    echo "Adding Hyprland PPA..."
-    sudo apt install -y software-properties-common
-    sudo add-apt-repository -y ppa:hyprwm/hyprland
-fi
-
+# ---------------------------------------------------------------------------
+# 1. Runtime applications (available in standard Ubuntu repos)
+# ---------------------------------------------------------------------------
 sudo apt update
 sudo apt install -y \
-    hyprland \
-    hyprlock \
-    hypridle \
-    hyprpaper \
     waybar \
     wofi \
     grim \
@@ -41,10 +34,114 @@ sudo apt install -y \
     mako-notifier \
     pavucontrol \
     playerctl \
-    xdg-desktop-portal-hyprland \
+    xdg-desktop-portal-wlr \
     policykit-1-gnome \
     lxappearance \
     caffeine
+
+# ---------------------------------------------------------------------------
+# 2. Build dependencies for Hyprland and the hyprwm ecosystem
+# ---------------------------------------------------------------------------
+sudo apt install -y \
+    build-essential \
+    cmake \
+    meson \
+    ninja-build \
+    pkg-config \
+    git \
+    libwayland-dev \
+    libwayland-server0 \
+    libxkbcommon-dev \
+    libxkbcommon-x11-dev \
+    libpixman-1-dev \
+    libinput-dev \
+    libudev-dev \
+    libseat-dev \
+    libxcb-dri3-dev \
+    libxcb-present-dev \
+    libxcb-composite0-dev \
+    libxcb-render-util0-dev \
+    libxcb-xfixes0-dev \
+    libxcb-icccm4-dev \
+    libxcb-ewmh-dev \
+    libxcb-res0-dev \
+    libxcb-xinput-dev \
+    libxcb1-dev \
+    libx11-xcb-dev \
+    libxcb-util0-dev \
+    libxcb-keysyms1-dev \
+    libxcb-randr0-dev \
+    libx11-dev \
+    libxcb-xkb-dev \
+    xwayland \
+    libgbm-dev \
+    libdrm-dev \
+    libvulkan-dev \
+    libvulkan-volk-dev \
+    libvkfft-dev \
+    glslang-tools \
+    libglvnd-dev \
+    libegl-dev \
+    libgles2-mesa-dev \
+    libpango1.0-dev \
+    libcairo2-dev \
+    libgdk-pixbuf-2.0-dev \
+    librsvg2-dev \
+    libsystemd-dev \
+    libpam0g-dev \
+    libmagic-dev \
+    libtomlplusplus-dev \
+    libudis86-dev \
+    libhyprlang-dev \
+    libhyprutils-dev \
+    libhyprwayland-scanner-dev \
+    wayland-protocols \
+    wayland-scanner++ \
+    libcurl4-openssl-dev \
+    libglib2.0-dev
+
+# ---------------------------------------------------------------------------
+# 3. Build and install each hyprwm component from source
+# ---------------------------------------------------------------------------
+
+build_cmake() {
+    local repo="$1"
+    local name="$2"
+    echo ""
+    echo ">>> Building $name from source..."
+    git clone --depth=1 --recurse-submodules "https://github.com/hyprwm/$repo.git" "$BUILD_DIR/$name"
+    cmake -S "$BUILD_DIR/$name" -B "$BUILD_DIR/$name/build" \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr
+    cmake --build "$BUILD_DIR/$name/build" --parallel "$(nproc)"
+    sudo cmake --install "$BUILD_DIR/$name/build"
+}
+
+build_meson() {
+    local repo="$1"
+    local name="$2"
+    echo ""
+    echo ">>> Building $name from source..."
+    git clone --depth=1 --recurse-submodules "https://github.com/hyprwm/$repo.git" "$BUILD_DIR/$name"
+    meson setup "$BUILD_DIR/$name/build" "$BUILD_DIR/$name" \
+        --prefix=/usr \
+        --buildtype=release
+    ninja -C "$BUILD_DIR/$name/build"
+    sudo ninja -C "$BUILD_DIR/$name/build" install
+}
+
+# Build order matters: Hyprland must come first, then the utilities.
+build_cmake Hyprland   hyprland
+build_cmake hyprpaper  hyprpaper
+build_cmake hypridle   hypridle
+build_cmake hyprlock   hyprlock
+
+# Update the dynamic linker cache in case libraries were installed
+sudo ldconfig
+
+echo ""
+echo ">>> Cleaning up build directory $BUILD_DIR"
+rm -rf "$BUILD_DIR"
 
 # Set up Hyprland config
 mkdir -p "$HOME/.config/hypr"
