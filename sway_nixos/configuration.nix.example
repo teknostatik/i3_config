@@ -1,0 +1,46 @@
+# System-level NixOS configuration snippet
+# Add this to your /etc/nixos/configuration.nix to enable Sway and related services
+
+{ config, pkgs, lib, ... }:
+
+{
+  # Enable Wayland support
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+  };
+
+  # Enable polkit
+  security.polkit.enable = true;
+
+  # XDG portals for Wayland
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    config = {
+      common = {
+        org.freedesktop.portal.FileChooser = "gtk3";
+      };
+    };
+  };
+
+  # Wayland-friendly defaults
+  environment.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = "1";
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    GDK_BACKEND = "wayland";
+  };
+
+  # Optional: Enable TRIM for SSDs (good for laptops)
+  services.fstrim.enable = true;
+
+  # Optional: Enable power management for laptops
+  services.tlp.enable = true;
+  services.power-profiles-daemon.enable = false;  # Conflicts with tlp
+
+  # Optional: CPU frequency scaling
+  services.cpuFreqUtils.enable = true;
+}
